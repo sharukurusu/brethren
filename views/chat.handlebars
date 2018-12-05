@@ -24,11 +24,17 @@
    
 </div>
 
-<div class="container">
-    <ul id="messages"></ul>
-            <form action="">
-                <input id="m" autocomplete="off" /><br><button>Send</button>
-            </form>
+<div id="groove-chat" class="container">
+    <div id="chat-window">
+        {{!-- output is where messages show up--}}
+        <div id="output"></div>
+    </div>
+    {{!-- input for user handle is temporary --}}
+    <input id="handle" type="text" placeholder="Handle"/>
+    <input id="message" type="text" placeholder="Text"/>
+    <button id="send">Send</button>
+
+    {{!-- STILL UNSURE WHERE WIDGET WILL BE --}}
 </div>
 
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
