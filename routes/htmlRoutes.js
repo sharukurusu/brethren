@@ -13,13 +13,16 @@ module.exports = function(app) {
 
   // Load user page and pass in an user by id
   app.get("/user/:id", function(req, res) {
-    db.User.findOne({ where: { id: req.params.id } }).then(function(
-      dbuser
-    ) {
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbuser) {
       res.render("user", {
         user: dbuser
       });
     });
+  });
+
+  //Render chatroom page
+  app.get("/chat", function(req, res) {
+    res.render("chat");
   });
 
   // Render 404 page for any unmatched routes
