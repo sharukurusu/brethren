@@ -1,7 +1,7 @@
 // Get references to page elements
 var $userName = $("#user-name");
 var $userEmail = $("#user-email");
-
+var $userPassword = $("#user-password");
 var $userBio = $("#user-bio");
 var $submitBtn = $("#submit");
 var $userList = $("#user-list");
@@ -69,7 +69,8 @@ var handleFormSubmit = function(event) {
   var user = {
     name: $userName.val().trim(),
     email: $userEmail.val().trim(),
-    bio: $userBio.val().trim()
+    bio: $userBio.val().trim(),
+    password: $userPassword.val().trim()
     // password: $userPassword.val(),
     // securityQuestion: $secQuestion.val().trim()
   };
@@ -86,6 +87,7 @@ var handleFormSubmit = function(event) {
   $userName.val("");
   $userEmail.val("");
   $userBio.val("");
+  $userPassword.val("");
 };
 
 // handleDeleteBtnClick is called when an user's delete button is clicked
