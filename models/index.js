@@ -20,16 +20,20 @@ if (config.use_env_variable) {
 }
 
 fs.readdirSync(__dirname)
+// Finds all the .js files that aren't this one (basename)
   .filter(function(file) {
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
+//   Then for each model returned tells sequelize to import it, joining the path with the file name
   .forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
+
     db[model.name] = model;
   });
 
+//   Makes associations where they exist
 Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
