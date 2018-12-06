@@ -1,38 +1,47 @@
-<style>
-    
-      #messages li:nth-child(odd) { background: #eee; }
-</style>
-
-
-
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
 
+            </div>
         </div>
-    </div>
-</nav>
-   
+    </nav>
+
 </div>
 
 <div id="groove-chat" class="container">
-    <div id="chat-window">
-        {{!-- output is where messages show up--}}
-        <div id="output"></div>
+    <div id="chat-window" class="row">
+        <div class="col">
+            {{!-- Output is where messages show up--}}
+            <div id="output"></div>
+        </div>
+        <div class="col">
+            <div id="feedback"></div>
+        </div>
+
     </div>
-    {{!-- input for user handle is temporary --}}
-    <input id="handle" type="text" placeholder="Handle"/>
-    <input id="message" type="text" placeholder="Text"/>
-    <button id="send">Send</button>
+    <div id="chat-window">
+
+
+        <form>
+            {{!-- Input for user handle is temporary --}}
+            <input id="handle" type="text" placeholder="Handle" />
+            <input id="message" type="text" placeholder="Text" />
+            <button id="send">Send</button>
+        </form>
+
+    </div>
+
+
+
 
     {{!-- STILL UNSURE WHERE WIDGET WILL BE --}}
 </div>
