@@ -15,17 +15,15 @@ var server = app.listen(PORT, function() {
   );
 });
 
-
 var io = socket(server);
 
-io.on("connection", function(socket){
+io.on("connection", function(socket) {
   console.log("user connected", socket.id);
 
-  socket.on("chat", function(data){
+  socket.on("chat", function(data) {
     io.sockets.emit("chat", data);
-  })
-})
-
+  });
+});
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
