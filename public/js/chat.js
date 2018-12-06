@@ -10,11 +10,13 @@ var $message = $("#message"),
 
 //Emit events
 
-$btn.on("click", function() {
+$btn.on("click", function(event) {
+  event.preventDefault();
   socket.emit("chat", {
     message: $message.val(),
     handle: $handle.val()
   });
+  $message.val("");
 });
 
 $message.on("keypress", function() {
