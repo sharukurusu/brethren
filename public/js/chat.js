@@ -23,11 +23,13 @@ $btn.on("click", function(event) {
   $message.val("");
 });
 
-$message.on("keyup", function() {
+$message.on("keypress", function() {
   if ($handle.val() === "") {
     return false;
   }
-  socket.emit("typing", $handle.val());
+  if ($message.val() !== "") {
+    socket.emit("typing", $handle.val());
+  }
 });
 
 $trackBtn.on("click", function(event) {

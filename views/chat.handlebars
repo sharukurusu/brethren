@@ -29,9 +29,9 @@
         </div>
 
     </div>
-    <div id="forms" class="row">
+    <div id="message-input" class="row">
         <div class="col">
-            <form>
+            <form autocomplete="off">
             {{!-- Input for user handle is temporary --}}
             <input id="handle" type="text" placeholder="Handle" />
             <input id="message" type="text" placeholder="Text" />
@@ -39,8 +39,8 @@
         </form>
         </div>
         <div class="col">
-            <form>
-                <input id="track-search" type="text" placeholder="Search for a song"/>
+            <form autocomplete="off">
+                <input id="track-search" type="text" placeholder="Search for a song or album"/>
                 <button id="trackSend">Search</button>
                 <input id="artist-search" type="text" placeholder="Search for an artist"/>
                 <button id="artistSend">Search</button>
