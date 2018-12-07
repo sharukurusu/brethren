@@ -36,13 +36,27 @@ io.on("connection", function(socket) {
   });
 
   socket.on("trackSearch", function(data) {
-    spotify.search({ type: "track", query: data.search }, function(err, spotifyData) {
-      if (err) {
-        return console.log("Error occurred: " + err);
+    spotify.search(
+      { type: "track", market: "US", query: data.search },
+      function(err, spotifyData) {
+        if (err) {
+          return console.log("Error occurred: " + err);
+        }
+        io.sockets.emit("trackSearch", spotifyData.tracks.items[0].album.id);
       }
-      console.log(spotifyData);
-      io.sockets.emit("trackSearch", spotifyData);
-    });
+    );
+  });
+
+  socket.on("artistSearch", function(data) {
+    spotify.search(
+      { type: "artist", market: "US", query: data.search },
+      function(err, spotifyData) {
+        if (err) {
+          return console.log("Error occurred: " + err);
+        }
+        io.sockets.emit("artistSearch", spotifyData.artists.items[0].id);
+      }
+    );
   });
 });
 
