@@ -3,6 +3,10 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var socket = require("socket.io");
 var db = require("./models");
+//Spotify API
+var keys = require("./keys.js"),
+  Spotify = require("node-spotify-api"),
+  spotify = new Spotify(keys.spotify);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -29,6 +33,16 @@ io.on("connection", function(socket) {
 
   socket.on("typing", function(data) {
     socket.broadcast.emit("typing", data);
+  });
+
+  socket.on("trackSearch", function(data) {
+    spotify.search({ type: "track", query: data.search }, function(err, spotifyData) {
+      if (err) {
+        return console.log("Error occurred: " + err);
+      }
+      console.log(spotifyData);
+      io.sockets.emit("trackSearch", spotifyData);
+    });
   });
 });
 
