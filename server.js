@@ -36,7 +36,10 @@ io.on("connection", function(socket) {
   });
 
   socket.on("trackSearch", function(data) {
-    spotify.search({ type: "track", query: data.search }, function(err, spotifyData) {
+    spotify.search({ type: "track", query: data.search }, function(
+      err,
+      spotifyData
+    ) {
       if (err) {
         return console.log("Error occurred: " + err);
       }
