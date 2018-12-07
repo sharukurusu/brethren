@@ -7,6 +7,7 @@ var $message = $("#message"),
   $btn = $("#send"),
   $output = $("#output"),
   $feedback = $("#feedback"),
+  $widget = $("#widget"),
   $trackSearch = $("#track-search"),
   $artistSearch = $("#artist-search"),
   $trackBtn = $("#trackSend"),
@@ -22,7 +23,10 @@ $btn.on("click", function(event) {
   $message.val("");
 });
 
-$message.on("keypress", function() {
+$message.on("keyup", function() {
+  if ($handle.val() === "") {
+    return false;
+  }
   socket.emit("typing", $handle.val());
 });
 
@@ -30,7 +34,6 @@ $trackBtn.on("click", function(event) {
   if ($trackSearch.val() === "") {
     return false;
   }
-  console.log($trackSearch.val());
   event.preventDefault();
   socket.emit("trackSearch", {
     search: $trackSearch.val()
@@ -60,5 +63,25 @@ socket.on("typing", function(data) {
 });
 
 socket.on("trackSearch", function(data) {
+  var iframe = $("<iframe>");
+  iframe.attr("src", "https://open.spotify.com/embed/album/" + data);
+  iframe.attr("width", "300");
+  iframe.attr("height", "380");
+  iframe.attr("frameborder", "0");
+  iframe.attr("allowtransparency", "true");
+  iframe.attr("allow", "encrypted-media");
+  $widget.html(iframe);
+  console.log(data);
+});
+
+socket.on("artistSearch", function(data) {
+  var iframe = $("<iframe>");
+  iframe.attr("src", "https://open.spotify.com/embed/artist/" + data);
+  iframe.attr("width", "300");
+  iframe.attr("height", "380");
+  iframe.attr("frameborder", "0");
+  iframe.attr("allowtransparency", "true");
+  iframe.attr("allow", "encrypted-media");
+  $widget.html(iframe);
   console.log(data);
 });
