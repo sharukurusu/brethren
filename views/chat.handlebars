@@ -1,67 +1,39 @@
+{{>navbar/navbar logged-in=true chat=true}}
+
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-
-            </div>
-        </div>
-    </nav>
-
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Chat Room</h2>
+    </div>
+  </div>
 </div>
 
-<div id="groove-chat" class="container">
-    <div id="chat-window" class="row">
-        <div class="col">
-            {{!-- Output is where messages show up--}}
-            <div id="output"></div>
-        </div>
-        <div class="col">
-            {{!-- feedback is where user currently typing shows up --}}
-            <div id="feedback"></div>
-        </div>
+<div id="chat-container">
 
-    </div>
-    <div id="forms" class="row">
-        <div class="col">
-            <form>
-            {{!-- Input for user handle is temporary --}}
-            <input id="handle" type="text" placeholder="Handle" />
-            <input id="message" type="text" placeholder="Text" />
-            <button id="send">Send</button>
-        </form>
-        </div>
-        <div class="col">
-            <form>
-                <input id="track-search" type="text" placeholder="Search for a song"/>
-                <button id="trackSend">Search</button>
-                <input id="artist-search" type="text" placeholder="Search for an artist"/>
-                <button id="artistSend">Search</button>
-            </form>
-        </div>
+  <div id="chat"></div>
+  <div id="users"></div>
 
-    </div>
-    <div class="row">
-        <div  id="widget" class="col">
-            {{!-- where the widget shows up --}}
-        </div>
-    </div>
-
-
-
-
-    
+  <form id="send-message">
+    <input id="message" type="text"></input>
+    <button id="send">Send</button>
+  </form>
+  
+</div>
+<div class="container">
+    <form autocomplete="off">
+    <input id="track-search" type="text" placeholder="Search for a song or album" />
+    <button id="trackSend">Search</button>
+    <input id="artist-search" type="text" placeholder="Search for an artist" />
+    <button id="artistSend">Search</button>
+  </form>
+  <div id="widget" class="col">
+    {{!-- where the widget shows up --}}
+  </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
 
-
-<script src="/js/chat.js"></script>
+<script type="text/javascript" src="js/chatClient.js"></script>
