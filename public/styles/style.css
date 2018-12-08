@@ -19,6 +19,10 @@ body {
     grid-area: users;
 }
 
+#feedback {
+    grid-area: feedback;
+}
+
 #send-message {
     grid-area: input;
     display: flex;
@@ -37,8 +41,8 @@ body {
 }
 #chat-container {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
     grid-template-areas: 
-    "chat users"
-    "input input";
+    "chat users feedback"
+    "input input input";
 }

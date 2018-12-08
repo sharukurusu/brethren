@@ -23,12 +23,10 @@ $btn.on("click", function(event) {
   $message.val("");
 });
 
-$message.on("keypress", function() {
-  if ($handle.val() === "") {
-    return false;
-  }
-  if ($message.val() !== "") {
-    socket.emit("typing", $handle.val());
+$messageBox.on("keypress", function() {
+  
+  if ($messageBox.val() !== "") {
+    socket.emit("typing", username);
   }
 });
 
