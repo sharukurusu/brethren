@@ -9,6 +9,7 @@ $(document).ready(function() {
     var origin = window.location.origin
     var socket = io.connect(origin)
     var $messageBox = $("#message")
+    var $feedback = $("#feedback")
     var $send = $("#send")
     var $chat = $("#chat")
     var $users = $("#users")
@@ -24,6 +25,14 @@ $(document).ready(function() {
         socket.emit("send message", chatMsg)
         $messageBox.val("")
     })
+
+    $messageBox.on("keypress", function() {
+  
+        if ($messageBox.val() !== "") {
+          socket.emit("typing", username);
+        }
+      });
+      
 
     $trackBtn.on("click", function(event) {
         if ($trackSearch.val() === "") {
@@ -57,6 +66,14 @@ $(document).ready(function() {
     socket.on("new message", function(data){
         $chat.append("<p><strong>" + data.username + ": </strong>" + data.message + "<br></p>")
     })
+
+    socket.on("typing", function(data) {
+        if ($("#" + data).length === 0) {
+          $feedback.append(
+            "<p id='" + data + "'><em>" + data + " is typing a message...</em></p>"
+          );
+        }
+      });
 
     socket.on("trackSearch", function(data) {
         var iframe = $("<iframe>");
