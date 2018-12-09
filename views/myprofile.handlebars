@@ -1,13 +1,99 @@
-{{>navbar/navbar logged-in=true login=true}}
+<div class="top">
+   
+  </div>
+  {{>navbar/navbar logged-in=true login=true}}
 
 <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2>User Profile for: <span class="member-name"></span></h2>
+        <h2 class="member">User Profile for: <span class="member-name"></span></h2>
       </div>
     </div>
   </div>
 
+
+  {{!-- <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="#">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Add a Favorite</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="#">Message/ Chat</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="#">Find a User</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="#">Find Music</a>
+  </li>
+    </ul> --}}
+
+ 
+    <div class="jumbotron">
+  <div id="top">
+  <h1 class="display-4">Welcome to Groove Rooms!</h1>
+  <hr class="my-4"> 
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="container">
+          <div class="main">
+            <h2 class="title">My Profile</h2>
+            <div class="inset-top">
+            <div class="titles">
+              <h3 class="bio-title">John Smith</h3>
+              <img src="https://pbs.twimg.com/profile_images/1002272769352978433/9S4QWSR0_400x400.jpg" alt="profile image" class="img-thumbnail">
+              </div>
+            
+            <div class="titles">
+              <h3 class="bio-title">Bio:</h3>
+              <div class="bio">Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit. Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit. Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit</div>
+            </div>
+            
+            <div class="titles">
+              <h3 class="bio-title">Favorites:</h3>
+              <div class="favorites">
+                <button class="record">
+                 <p class="name">Pop</p>
+                </button>
+                <button class="record">
+                 <p class="name">Rock</p>
+                </button>
+                <button class="record">
+                 <p class="name">Rap</p>
+                </button>
+              </div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div class="col">
+        <div class="container">
+          <div class="main-genre">
+            <div class="inset">
+              <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            {{!-- <div class="genre"><a href="#">Link to Genre Room</a></div>
+            <div class="genre"><a href="#">Link to Genre Room</a></div>
+            <div class="genre"><a href="#">Link to Genre Room</a></div>
+            <div class="genre"><a href="#">Add a Genre</a></div> --}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="js/myProfile.js"></script>
