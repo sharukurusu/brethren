@@ -10,12 +10,14 @@ $(document).ready(function() {
   signUpForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
-        username: usernameInput.val().trim(),
-        email: emailInput.val().trim(),
-        password: passwordInput.val().trim()
+      username: usernameInput.val().trim(),
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
     };
 
-    if (!userData.email || !userData.password || !userData.username) { return; }
+    if (!userData.email || !userData.password || !userData.username) {
+      return;
+    }
     // if (!passwordInput === passwordInput2) { alert("Passwords must match!"); return; }
     // If we have an email and password, run the signUpUser function
     signUpUser(userData.username, userData.email, userData.password);
@@ -23,20 +25,22 @@ $(document).ready(function() {
     usernameInput.val("");
     emailInput.val("");
     passwordInput.val("");
-    passwordInput2.val("")
+    passwordInput2.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser( username, email, password) {
+  function signUpUser(username, email, password) {
     $.post("/api/signup", {
-        username: username,
-        email: email,
-        password: password
-    }).then(function(data) {
-      window.location.replace(data);
-      // If there's an error, handle it by throwing up a bootstrap alert
-    }).catch(handleLoginErr);
+      username: username,
+      email: email,
+      password: password
+    })
+      .then(function(data) {
+        window.location.replace(data);
+        // If there's an error, handle it by throwing up a bootstrap alert
+      })
+      .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
