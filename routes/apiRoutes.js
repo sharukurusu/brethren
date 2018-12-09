@@ -55,4 +55,18 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/users", function(req, res) {
+    db.User.findAll({}).then(function(users) {
+      res.json(users);
+    });
+  });
+
+  app.get("/api/users/:username", function(req, res) {
+    db.User.findOne({ where: { username: req.params.username } }).then(function(
+      user
+    ) {
+      res.json(user);
+    });
+  });
 };
