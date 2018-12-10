@@ -116,7 +116,6 @@ a {
 }
 @media screen and (max-width: 500px) {
     #chat-container {
-        grid-template-columns: 8fr 1fr;
         grid-template-areas:
         "chat chat"
         "input input"
@@ -158,11 +157,34 @@ a {
     width: 40%;
 }
 
+#message-card {
+    display: flex;
+    width: 100%;
+    background-color: gray !important;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
 #chat p {
     margin: auto;
     border-radius: 5px;
     background-color: gray;
     opacity: 80%;
+    text-decoration: none;
+}
+
+#chat a {
+    margin: auto;
+    border-radius: 5px;
+    background-color: gray;
+    opacity: 80%;
+}
+
+#chat a img {
+    margin: 0 6px 0 6px;
+    max-width: 60px;
+    border-radius: 50%;
+}
 }
 
 

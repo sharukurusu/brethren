@@ -58,10 +58,9 @@ $(document).ready(function() {
     });
   });
   socket.on("new message", function(data) {
-      var messageCard = $("<a>");
-      messageCard.attr("href", "/members/" + data.username);
-      messageCard.text(data.username + ": " + data.message);
-      messageCard.append("<br>")
+      var messageCard = $("<div class='message-card'><a href='/members/'" + data.username + ">" +
+        "<img src='/styles/images/ghostface.jpg' alt='avatar'>" + data.username + "</a>"
+        + "<p>: " + data.message + "</p></div><br>");
       $chat.append(messageCard)
   });
 
