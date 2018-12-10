@@ -10,7 +10,8 @@ module.exports = function(app) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/members");
+
+    res.json("/members/" + req.user.username);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -51,7 +52,8 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-        username: req.user.username
+        username: req.user.username,
+        bio: req.user.bio
       });
     }
   });
@@ -63,10 +65,22 @@ module.exports = function(app) {
   });
 
   app.get("/api/users/:username", function(req, res) {
-    db.User.findOne({ where: { username: req.params.username } }).then(function(
-      user
-    ) {
+    db.User.findOne({ where: { username: req.params.username } })
+    .then(function(user) {
       res.json(user);
     });
   });
+
+  app.put("/api/bio", function(req, res, next){
+      console.log(req.body)
+      db.User.update(
+          {bio: req.body.bio},
+          {returning: true, where: {username: req.body.username} }
+        )
+        .then(function(info) {
+          res.json(info)
+        })
+        .catch(next)
+       })
+
 };

@@ -1,12 +1,16 @@
-{{>navbar/navbar logged-in=true login=true}}
+{{>navbar/navbar logged-in=true profile=true}}
+{{#if owner}}<h1>You own this page!</h1>{{/if}}
 
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>User Profile for: <span class="member-name"></span></h2>
-      </div>
-    </div>
-  </div>
+        <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
+
+        <p id="bio">Bio: {{user.bio}}</p>
+        {{#if owner}}
+        <form id="edit-bio-form">
+            <input id="edit-bio-textbox" type="text" placeholder="Tell us how you groove!">
+            <button id="edit-bio-submit"></button>
+        </form>
+        {{/if}}
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

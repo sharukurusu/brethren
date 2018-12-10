@@ -1,13 +1,24 @@
 $(document).ready(function() {
-  console.log("location.pathname", window.location.pathname);
-  var path = window.location.pathname;
-  var pathString = path.toString();
-  console.log(pathString);
-  var userForPage = pathString.slice(9);
-  console.log(userForPage);
 
-  $.get("/api/users/" + userForPage).then(function(data) {
-    console.log(data);
-    $(".member-name").text(data.username);
-  });
+    var $editBioText = $("#edit-bio-textbox")
+    var $editBioSubmit = $("#edit-bio-submit")
+    var $username = $("#user-title").attr("data-username")
+    var $bio = $("#bio")
+
+    $editBioSubmit.on("click", function(event){
+        event.preventDefault()
+        var newBio = $editBioText.val().trim()
+        $editBioText.val("")
+
+        $.ajax({
+            method: "PUT",
+            url: "/api/bio",
+            data: {username: $username, bio: newBio}
+        }).then(function(){
+            $.get("/api/users/" + $username)
+            .then(function(data){
+                $bio.text("Bio: " + data.bio)
+            })
+        })
+    })
 });
