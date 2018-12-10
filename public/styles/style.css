@@ -12,6 +12,14 @@ body, html {
     height: 100vh;
     max-height: 100vh;
 }
+@media screen and (max-width: 500px) {
+    body, html {
+        position: relative;
+        height: initial;
+        max-height: initial;
+        overflow: scroll;
+    }
+}
 .carousel {
     position: absolute !important;
     height: calc(100vh - 63px) !important;
@@ -98,29 +106,56 @@ a {
 .grid-password2 {grid-area: password2;}
 .grid-submit {grid-area: submit;}
 
-/* #chat {
-   grid-area: chat;
-   height: 400px;
+#chat-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+    "title title"
+    "chat users"
+    "input spotify";
+}
+@media screen and (max-width: 500px) {
+    #chat-container {
+        grid-template-columns: 8fr 1fr;
+        grid-template-areas:
+        "chat chat"
+        "input input"
+        "spotify spotify";
+    }
+    #feedback {display: none;}
+    #chat-title {display: none;}
+    #users {display: none;}
+}
+#chat-title{grid-area: title}
+#chat {
+    grid-area: chat;
+    height: 400px;
     overflow: scroll !important;
     border: 1px solid black !important;
 }
-
 #users {
     grid-area: users;
-} */
-
+}
 /* #feedback {
     grid-area: feedback;
-}
-
+} */
 #send-message {
     grid-area: input;
     display: flex;
     justify-content: flex-end;
 }
-
 #message {
     width: 100%;
+}
+#spotify-form {
+    grid-area: spotify;
+    display: flex;
+}
+#track-search {
+    width: 40%;
+}
+#artist-search {
+    width: 40%;
 }
 
 #chat p {
@@ -128,16 +163,10 @@ a {
     border-radius: 5px;
     background-color: gray;
     opacity: 80%;
-} */
-/* #chat-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
-    grid-template-areas: 
-    "chat users feedback"
-    "input input .";
 }
 
-  
+
+ /* 
   .list-group-item {
     line-height: 2.5;
   }

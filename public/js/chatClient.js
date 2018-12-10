@@ -15,8 +15,8 @@ $(document).ready(function() {
   var $widget = $("#widget");
   var $trackSearch = $("#track-search");
   var $artistSearch = $("#artist-search");
-  var $trackBtn = $("#trackSend");
-  var $artistBtn = $("#artistSend");
+  var $spotifySubmit = $("#spotify-search");
+
 
   $send.on("click", function(event) {
     event.preventDefault();
@@ -31,21 +31,21 @@ $(document).ready(function() {
     }
   });
 
-  $trackBtn.on("click", function(event) {
-    if ($trackSearch.val() === "") {
+  $spotifySubmit.on("click", function(event) {
+    event.preventDefault();
+    if ($trackSearch.val() === "" && $artistSearch.val() === "") {
       return false;
-    }
-    event.preventDefault();
-    socket.emit("trackSearch", {
-      search: $trackSearch.val()
-    });
+    } else if ($trackSearch.val() !== "" && $artistSearch.val() === "") {
+        socket.emit("trackSearch", {
+            search: $trackSearch.val()
+        });
+    } else if ($trackSearch.val() === "" && $artistSearch.val() !== "") {
+        socket.emit("artistSearch", {
+            search: $artistSearch.val()
+        });
+    }   else { return false } 
   });
-  $artistBtn.on("click", function(event) {
-    event.preventDefault();
-    socket.emit("artistSearch", {
-      search: $artistSearch.val()
-    });
-  });
+
 
   socket.on("connected users", function(data) {
     $users.empty();
@@ -58,9 +58,11 @@ $(document).ready(function() {
     });
   });
   socket.on("new message", function(data) {
-    $chat.append(
-      "<p><strong>" + data.username + ": </strong>" + data.message + "<br></p>"
-    );
+      var messageCard = $("<a>");
+      messageCard.attr("href", "/members/" + data.username);
+      messageCard.text(data.username + ": " + data.message);
+      messageCard.append("<br>")
+      $chat.append(messageCard)
   });
 
   socket.on("typing", function(data) {
@@ -74,8 +76,8 @@ $(document).ready(function() {
   socket.on("trackSearch", function(data) {
     var iframe = $("<iframe>");
     iframe.attr("src", "https://open.spotify.com/embed/album/" + data);
-    iframe.attr("width", "300");
-    iframe.attr("height", "380");
+    iframe.attr("width", "100%");
+    iframe.attr("height", "300");
     iframe.attr("frameborder", "0");
     iframe.attr("allowtransparency", "true");
     iframe.attr("allow", "encrypted-media");
@@ -85,8 +87,8 @@ $(document).ready(function() {
   socket.on("artistSearch", function(data) {
     var iframe = $("<iframe>");
     iframe.attr("src", "https://open.spotify.com/embed/artist/" + data);
-    iframe.attr("width", "300");
-    iframe.attr("height", "380");
+    iframe.attr("width", "100%");
+    iframe.attr("height", "300");
     iframe.attr("frameborder", "0");
     iframe.attr("allowtransparency", "true");
     iframe.attr("allow", "encrypted-media");

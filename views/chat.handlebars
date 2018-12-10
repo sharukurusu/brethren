@@ -1,19 +1,10 @@
 
 {{>navbar/navbar logged-in=true chat=true}}
 
-<div class="container">
- 
-
-    <div class="col-md-6 col-md-offset-3">
-      <h2 class="chat-title">Chat Room</h2>
-    </div>
-  </div>
-</div>
-
 
 
 <div id="chat-container">
-
+<h2 id="chat-title">Chat Room</h2>
   <div id="chat"></div>
   <div id="users"></div>
   <div id="feedback"></div>
@@ -21,19 +12,18 @@
     <input id="message" type="text"></input>
     <button id="send">Send</button>
   </form>
-  
+
+  <form id="spotify-form" autocomplete="off">
+        <input id="track-search" type="text" placeholder="Song" />
+        <input id="artist-search" type="text" placeholder="Artist" />
+        <button id="spotify-search">Search</button>
+    </form>
 </div>
-<div class="container">
-    <form autocomplete="off">
-    <input id="track-search" type="text" placeholder="Search for a song or album" />
-    <button id="trackSend">Search</button>
-    <input id="artist-search" type="text" placeholder="Search for an artist" />
-    <button id="artistSend">Search</button>
-  </form>
-  <div id="widget" class="col">
+
+    
+  <div id="widget">
     {{!-- where the widget shows up --}}
   </div>
-</div>
 
 
 
