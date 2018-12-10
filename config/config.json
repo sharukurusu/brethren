@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "karma",
+    "password": "root",
     "database": "groove_roomsdb",
     "host": "127.0.0.1",
     "dialect": "mysql"
