@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //  Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }) )
 app.set("view engine", "handlebars");
 
 // Chat
@@ -40,7 +40,7 @@ io.sockets.on("connection", function(socket) {
   var connectedChatUsers = [];
 
   socket.on("new user", function(data) {
-    socket.username = data;
+    socket.username = data.username;
     connectedChatUsers.push(socket.username);
     io.sockets.emit("connected users", connectedChatUsers);
   });

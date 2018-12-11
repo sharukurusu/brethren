@@ -1,36 +1,80 @@
 {{>navbar/navbar logged-in=true profile=true}}
 
 <div id="wrapper">
-  <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
-  <img src="/uploads/boomboxPurp.png" id="proPic" alt="Avatar" class="avatar">
-  
+  <h2 id="user-title" data-username="{{user.username}}">User Profile: {{user.username}}</h2>
+  <img src="{{#if user.imagePath}}{{user.imagePath}}{{else}}/uploads/boomboxPurp.png{{/if}}" id="proPic" alt="Avatar" class="avatar">
+  <div id="turntable"></div>
 
-  <p id="bio">Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum dolorem ducimus optio nam,
-    rerum vero ratione id architecto qui. {{user.bio}}</p>
-  
+  <p id="bio">{{user.bio}}</p>
+  {{#if owner}}
+  <button id="edit-profile" class="btn btn-primary" type="button" data-toggle="modal" data-target="#editModal">Edit</button>
+  {{/if}}
   <div id="profileWidget">
     {{!-- where the widget shows up --}}
+    <iframe src="https://open.spotify.com/embed/album/{{#if user.favoriteAlbum}}{{user.favoriteAlbum}}{{else}}1DFixLWuPkv3KT3TnV35m3{{/if}}" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
-  <div id="favs" style="background-image: url(/public/styles/images/audio-cassette-cassette-tape-1626481.jpg)">
-    <p>Rap</p>
-    <p>Rock</p>
-    <p>Pop</p>
-    <p>Country</p>
-    <p>Jazz</p>
-    <p>Electronica</p>
-    <p>Latin</p>
-    <p>Reggae</p>
-    <p>Blues</p>
+
+  <div id="favs" data-favorites="{{user.favorites}}">
+
   </div>
  
  
   
 </div>
 </div>
-{{#if owner}}
-  <button class="btn btn-primary" id="edit-profile">Edit</button>
-  {{/if}}
 
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Your Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="edit-form">
+            <div class="form-group grid-bio">
+                <label for="bio">Bio</label>
+                <input type="text" class="form-control" id="bio-input" placeholder="Bio">
+            </div>
+            <div class="form-group grid-img">
+                <label for="pic">Profile Picture URL</label>
+                <input type="text" class="form-control" id="pic-input" placeholder="Paste an image url">
+            </div>
+            <div class="form-group grid-img">
+                <label for="album">Favorite Album</label>
+                <input type="text" class="form-control" id="album-input" placeholder="Type the name of your favorite album">
+            </div>
+            <div class="">
+                <label for="genres">Favorite Genres</label><br>
+                <input class="genre-choice" type="checkbox" value="Classical">Classical</input>
+                <input class="genre-choice" type="checkbox" value="Jazz">Jazz</input>
+                <input class="genre-choice" type="checkbox" value="Country">Country</input>
+                <input class="genre-choice" type="checkbox" value="Folk">Folk</input><br>
+                <input class="genre-choice" type="checkbox" value="Bluegrass">Bluegrass</input>
+                <input class="genre-choice" type="checkbox" value="Hip-Hop">Hip Hop</input>
+                <input class="genre-choice" type="checkbox" value="Pop">Pop</input>
+                <input class="genre-choice" type="checkbox" value="Rock">Rock</input><br>
+                <input class="genre-choice" type="checkbox" value="Metal">Metal</input>
+                <input class="genre-choice" type="checkbox" value="EDM">EDM</input>
+                <input class="genre-choice" type="checkbox" value="Reggae">Reggae</input>
+                <input class="genre-choice" type="checkbox" value="Latin">Latin</input>
+
+
+            </div>
+        
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="edit-submit" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -39,17 +83,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="../js/profile.js"></script>
-=======
-{{#if owner}}<h1>You own this page!</h1>{{/if}}
-
-        <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
-
-        {{#if owner}}
-            <button id="edit-profile">Edit Profile</button>
-        {{/if}}
-        
-        <p id="bio">Bio: {{user.bio}}</p>
-
 
 {{!-- {{#if owner}}
         <h1>File Upload</h1>
@@ -70,9 +103,3 @@
     <img id="profile-img" alt="Profile Image" src="">
 {{/if}} --}}
         
-        
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="../js/profile.js"></script>
