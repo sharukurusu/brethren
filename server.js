@@ -40,8 +40,9 @@ io.sockets.on("connection", function(socket) {
   var connectedChatUsers = [];
 
   socket.on("new user", function(data) {
-    socket.username = data;
-    connectedChatUsers.push(socket.username);
+    console.log(data)
+    // socket.username = data;
+    connectedChatUsers.push(data.username);
     io.sockets.emit("connected users", connectedChatUsers);
   });
 
