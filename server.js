@@ -41,7 +41,7 @@ io.sockets.on("connection", function(socket) {
 
   socket.on("new user", function(data) {
     console.log(data)
-    // socket.username = data;
+     socket.username = data.username;
     connectedChatUsers.push(data.username);
     io.sockets.emit("connected users", connectedChatUsers);
   });
