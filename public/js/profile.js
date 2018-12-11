@@ -5,6 +5,9 @@ $(document).ready(function() {
     var $username = $("#user-title").attr("data-username")
     var $bio = $("#bio")
 
+    $editBtn.on("click", function(){
+        window.location.href = "/edit";
+    })
     // $editBioSubmit.on("click", function(event){
     //     event.preventDefault()
     //     var newBio = $editBioText.val().trim()

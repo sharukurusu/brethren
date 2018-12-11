@@ -4,13 +4,13 @@
         <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
 
         {{#if owner}}
-            <button id="edit-profile"></button>
+            <button id="edit-profile">Edit Profile</button>
         {{/if}}
         
         <p id="bio">Bio: {{user.bio}}</p>
 
 
-{{#if owner}}
+{{!-- {{#if owner}}
         <h1>File Upload</h1>
     <p>{{msg}}</p>>
     <form action="/upload" method="POST" enctype="multipart/form-data">
@@ -27,7 +27,7 @@
     </form>
     <br>
     <img id="profile-img" alt="Profile Image" src="">
-{{/if}}
+{{/if}} --}}
         
         
 
