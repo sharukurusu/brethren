@@ -6,6 +6,7 @@ body, html {
     width: 100%;
     color: white;
     background-color: #4d4d4d;
+    background-image: url(/styles/images/footer_lodyas.png);
     box-sizing: border-box;
     font-family: 'Gruppo', cursive;
     font-size: 1.25em;
@@ -59,16 +60,17 @@ body, html {
     grid-template-rows: 3fr 2fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-    "banner banner banner"
-    ". form-container ."
+    ". . banner"
+    "form-container form-container form-container"
     ". . ."
 }
 .banner {
     grid-area: banner;
+    width: 525px;
     font-family: 'Cabin Sketch', cursive;
     font-size: 3em;
-    justify-self: center;
-    align-self: center;
+    transform: rotate(15deg);
+    place-self: center;
     background: #343a40;
     border-radius: 20px;
     border: 8px double;
@@ -76,12 +78,15 @@ body, html {
     padding: 10px;
 }
 @media screen and (max-width: 500px) {
-    .banner {font-size: 2em;}
+    .grid-container{ grid-template-areas: "banner banner banner" ". form-container .";}
+    .banner {font-size: 2em; transform: rotate(0deg);
+    }
 }
 .form-container {
     grid-area: form-container;
     min-width: 320px;
     padding: 0 10px 10px 10px;
+    place-self: center;
     background: #343a40;
     border-radius: 20px;
     opacity: 0.9;
@@ -108,70 +113,153 @@ a {
 
 #wrapper {
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 4fr 4fr;
   grid-template-areas:
-  "title title title"
+  "proPic title widget"
   "proPic bio widget"
-  "favs favs widget";
-  background-color: #343a40;
+  "favs favs favs";
+  /* background-color: #343a40; */
 }
 
-.wrapper > div:nth-child(even) {
-  background-color: rgb(151, 130, 130);
-}
 #bio{
   width: 100%;
   grid-area: bio;
+  padding: 1em;
 }
-
+#edit-profile {
+    grid-area: bio;
+    align-self: end;
+}
+.modal-content {
+    background-color: #343a40;
+}
 #user-title{
   grid-area: title;
-}
-
-#proPic{
-  grid-area: proPic;
-  vertical-align: middle;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+  align-self: center;
+  margin-bottom: 0;
   justify-self: center;
 }
 
-#profileWidget {
-  grid-area: widget;
-  background-color: dimgray;
+#proPic{
+    grid-area: proPic;
+    vertical-align: middle;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    place-self: center;
+    z-index: 1;
 }
 
-#favs {
+#proPic:hover {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+#turntable{
+    grid-area: proPic;
+    background-size: cover;
+    background-image: url(/styles/images/turntable.jpg);
+}
+
+#profileWidget {
+    grid-area: widget;
+    background-color: dimgray;
+    background-image: url(/styles/images/audio-cassette-cassette-tape-1626481.jpg);
+    background-size: cover;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+}
+#profileWidget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* #favs {
   grid-area: favs;
   display: grid;
+  grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
   overflow: scroll;
-  grid-gap: 1px;
+  grid-gap: 15px;
+  max-height: 100%;
+} */
+#favs {
+    grid-area: favs;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
-#favs p {
-  display: inline-block;
-  border: rgb(43, 40, 43) solid 2px;
+
+#favs a {
+    flex: 0 0 auto;
+    width: 300px;
+    /* display: inline-block; */
+    border: rgb(43, 40, 43) solid 2px;
+    margin-bottom: 0;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    background-size: cover;
+    background-position: center;
 }
+#favs a:hover{
+    transition: all 0.8s ease;
+    -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
+    filter: grayscale(0%);
+ }
+
+a:link {color: white;}
+a:visited {color: white;}
+a:hover {color: white;}
+a:active {color: white;}
+
+#Classical {background-image: url(/styles/images/classic.jpg)}
+#Jazz {background-image: url(/styles/images/jazz.jpg)}
+#Country {background-image: url(/styles/images/country.jpg); background-position: left;}
+#Folk {background-image: url(/styles/images/folk.jpg)}
+#Bluegrass {background-image: url(/styles/images/bluegrass.jpg)}
+#Hip-Hop {background-image: url(/styles/images/hiphop.jpg)}
+#Pop {background-image: url(/styles/images/pop.jpg)}
+#Rock {background-image: url(/styles/images/rock.jpg)}
+#Metal {background-image: url(/styles/images/metal.jpg)}
+#EDM {background-image: url(/styles/images/EDM.jpg)}
+#Reggae {background-image: url(/styles/images/reggae.jpg)}
+#Latin {background-image: url(/styles/images/latin.jpg)}
 
 #chat-container {
+    height: 100%;
     display: grid;
     color: #fff;
     grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 400px 1fr 2fr;
     grid-template-areas:
     "title title"
     "chat users"
-    "input spotify";
+    "input spotify"
+    "widget widget";
 }
 @media screen and (max-width: 500px) {
     #chat-container {
+        grid-template-rows: 300px;
         grid-template-areas:
         "chat chat"
         "input input"
-        "spotify spotify";
+        "spotify spotify"
+        "widget widget";
     }
     #feedback {display: none;}
     #chat-title {display: none;}
@@ -180,16 +268,22 @@ a {
 #chat-title{grid-area: title}
 #chat {
     grid-area: chat;
-    height: 400px;
+    max-height: 400px;
     overflow: scroll !important;
     border: 1px solid black !important;
+    background-size: cover;
+    /* background-image: url(images/connectwork.png) */
+
 }
 #users {
     grid-area: users;
+    background-size: cover;
+    background-image: url(images/abstract-architecture-building-exterior-593158.jpg)
 }
-/* #feedback {
-    grid-area: feedback;
-} */
+#feedback {
+    grid-area: users;
+    align-self: end;
+}
 #send-message {
     grid-area: input;
     display: flex;
@@ -197,6 +291,7 @@ a {
 }
 #message {
     width: 100%;
+    border: 2px solid;
 }
 #spotify-form {
     grid-area: spotify;
@@ -204,21 +299,50 @@ a {
 }
 #track-search {
     width: 40%;
+    border: 2px solid; border-left: 0;
 }
 #artist-search {
     width: 40%;
+    border: 2px solid; border-left: 0;
 }
-
-#message-card {
+#widget {
+    grid-area: widget;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    background-image: url(images/audio-cassette-cassette-tape-1626481.jpg);
+    background-size: cover;
+    background-position: bottom; 
+}
+#widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#send { background-color: #2ECC40; border: 2px solid; border-left: 0;}
+#spotify-search{ background-color: #2ECC40; border: 2px solid; border-left: 0;}
+.message-card {
     display: flex;
     width: 100%;
     background-color: gray !important;
     border-radius: 5px;
     border: 1px solid;
+    justify-content: flex-start;
+    background-color: gray;
+    align-items: baseline;
+    margin-bottom: 5px;
 }
 
-#chat p {
-    margin: auto;
+.message-card p {
+    margin: 0 !important;
+    margin-bottom: 0 !important;
     border-radius: 5px;
     background-color: gray;
     opacity: 80%;
@@ -226,7 +350,7 @@ a {
 }
 
 #chat a {
-    margin: auto;
+    margin: 0;
     border-radius: 5px;
     background-color: gray;
     opacity: 80%;
@@ -236,6 +360,16 @@ a {
     margin: 0 6px 0 6px;
     max-width: 60px;
     border-radius: 50%;
+}
+
+#users a {
+    width: 100%;
+    background-color: darkslateblue;
+    display: block;
+    border: 1px solid;
+    border-radius: 5px;
+    padding-left: .5em;
+}
 }
 
 
