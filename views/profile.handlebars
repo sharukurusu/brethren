@@ -2,14 +2,13 @@
 
 <div id="wrapper">
   <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
-  <img src="/uploads/boomboxPurp.png" id="proPic" alt="Avatar" class="avatar">
+  {{!-- <img src="{{user.imagePath}}" id="proPic" alt="Avatar" class="avatar"> --}}
   
 
-  <p id="bio">Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum dolorem ducimus optio nam,
-    rerum vero ratione id architecto qui. {{user.bio}}</p>
+  <p id="bio">Bio: {{user.bio}}</p>
   
   <div id="profileWidget">
-    {{!-- where the widget shows up --}}
+    <iframe src="https://open.spotify.com/embed/album/{{user.favoriteAlbum}}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
   <div id="favs" style="background-image: url(/public/styles/images/audio-cassette-cassette-tape-1626481.jpg)">
     <p>Rap</p>
@@ -39,16 +38,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="../js/profile.js"></script>
-=======
-{{#if owner}}<h1>You own this page!</h1>{{/if}}
 
-        <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
-
-        {{#if owner}}
-            <button id="edit-profile">Edit Profile</button>
-        {{/if}}
-        
-        <p id="bio">Bio: {{user.bio}}</p>
 
 
 {{!-- {{#if owner}}
@@ -73,6 +63,4 @@
         
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="../js/profile.js"></script>
+   

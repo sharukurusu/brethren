@@ -3,19 +3,28 @@ var $bioInput = $("#bio-input"),
     $albumInput = $("#album-input"),
     $submitBtn = $("#edit-submit"),
     genreString = [],
-    albumId;
+    albumId = "";
 
     
     $submitBtn.on("click", function (event){
         event.preventDefault();
-    
-        $.get("/api/spotify", {
-            search: $albumInput.val().trim()
-        }).then(function(response){
-            albumId = response
-            console.log(albumId)
+        if($albumInput.val() !== ""){
+            var albumSearched = {
+                search: $albumInput.val().trim()
+            }
+            $.ajax({
+                method: "POST",
+                url: "/api/spotify",
+                data: albumSearched
+              }).then(function(response){
+                albumId = response
+                console.log(albumId)
+                afterSpotify()
+            })
+        } else {
             afterSpotify()
-        })
+        }
+        
        
         // updateUser(update)
 
@@ -33,7 +42,7 @@ var $bioInput = $("#bio-input"),
                     
                 }
         })
-        console.log(genreString)
+        console.log(genreString) 
         var update = {
             bio: $bioInput.val().trim(),
             genres: genreString.toString(),

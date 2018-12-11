@@ -14,7 +14,7 @@ module.exports = function(app) {
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
 
-    res.json("/members/" + req.user.username);
+    res.json("/members");
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -39,7 +39,7 @@ module.exports = function(app) {
         });
     });
   });
-
+ 
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
@@ -75,7 +75,7 @@ module.exports = function(app) {
   });
 
   app.put("/api/edit", function(req, res, next){
-      console.log(req.body)
+      // console.log(req.body)
       var updateObject = {}
       if (req.body.bio !== "") {
         updateObject.bio = req.body.bio
@@ -89,21 +89,23 @@ module.exports = function(app) {
       if (req.body.pic !== "") {
         updateObject.imagePath = req.body.pic
       }
-      console.log(updateObject)
-      console.log(req.user.username)
+      // console.log(updateObject)
+      // console.log(req.user.username)
       db.User.update(
           updateObject,
           {returning: true, where: {username: req.user.username} }
         )
         .then(function(info) {
+          // console.log(info)
           res.json(info)
         })
         .catch(next)
        })
 
-  app.get("/api/spotify", function(req, res){
+  app.post("/api/spotify", function(req, res){
+    console.log(req.body.search)
     spotify.search(
-      { type: "track", market: "US", query: req.body },
+      { type: "track", market: "US", query: req.body.search },
       function(err, spotifyData) {
         if (err) {
           return console.log("Error occurred: " + err);
