@@ -10,14 +10,22 @@ $(document).ready(function() {
 
     $submitBtn.on("click", function (event){
         event.preventDefault();
-    
-        $.get("/api/spotify", {
-            search: $albumInput.val().trim()
-        }).then(function(response){
-            albumId = response
-            console.log(albumId)
+        if($albumInput.val() !== ""){
+            var albumSearched = {
+                search: $albumInput.val().trim()
+            }
+            $.ajax({
+                method: "POST",
+                url: "/api/spotify",
+                data: albumSearched
+              }).then(function(response){
+                albumId = response
+                console.log(albumId)
+                afterSpotify()
+            })
+        } else {
             afterSpotify()
-        })
+        }
     })
 
     function afterSpotify(){
@@ -30,7 +38,7 @@ $(document).ready(function() {
                 genreString.push(genre.toString())
             }
         })
-        console.log(genreString)
+        console.log(genreString) 
         var update = {
             username: $username,
             bio: $bioInput.val().trim(),

@@ -20,7 +20,7 @@ module.exports = function(app) {
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/members/");
     }
     // res.sendFile(path.join(__dirname, "../public/login.html"));
     res.render("login");
@@ -46,6 +46,7 @@ module.exports = function(app) {
   app.get("/members/:username", isAuthenticated, function(req, res) {
     db.User.findOne({where: { username: req.params.username } })
     .then(function(data) {
+      
         if (data.username === req.user.username) {
             res.render("profile", {owner: true, user: req.user})
         } else {
