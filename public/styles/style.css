@@ -123,6 +123,18 @@ a {
   "favs favs favs";
   /* background-color: #343a40; */
 }
+@media screen and (max-width: 650px) {
+    #wrapper { 
+        grid-template-areas: 
+        "title"
+        "proPic"
+        "bio"
+        "widget"
+        "favs";
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1fr;
+    }
+}
 
 #bio{
   width: 100%;
@@ -202,6 +214,7 @@ a {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    min-height: 100px;
 }
 
 
