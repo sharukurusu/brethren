@@ -56,7 +56,8 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         username: req.user.username,
-        bio: req.user.bio
+        bio: req.user.bio,
+        imagePath: req.user.imagePath
       });
     }
   });
@@ -89,8 +90,6 @@ module.exports = function(app) {
       if (req.body.pic !== "") {
         updateObject.imagePath = req.body.pic
       }
-      // console.log(updateObject)
-      // console.log(req.user.username)
       db.User.update(
           updateObject,
           {returning: true, where: {username: req.user.username} }

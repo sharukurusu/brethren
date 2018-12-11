@@ -3,7 +3,11 @@ $(document).ready(function() {
   // and updates the HTML on the page
   $.get("/api/user_data").then(function(data) {
     username = data.username;
-    socket.emit("new user", username);
+    imagePath = data.imagePath
+    var user = {}
+    user.username = username
+    user.imagePath = imagePath
+    socket.emit("new user", user);
   });
   var origin = window.location.origin;
   var socket = io.connect(origin);
@@ -20,7 +24,7 @@ $(document).ready(function() {
 
   $send.on("click", function(event) {
     event.preventDefault();
-    var chatMsg = { username: username, message: $messageBox.val() };
+    var chatMsg = { username: username, imagePath: imagePath, message: $messageBox.val() };
     socket.emit("send message", chatMsg);
     $messageBox.val("");
   });
@@ -48,6 +52,7 @@ $(document).ready(function() {
 
 
   socket.on("connected users", function(data) {
+      console.log(data)
     $users.empty();
     data.forEach(function(name) {
       var userCard = $("<a>");
@@ -59,8 +64,8 @@ $(document).ready(function() {
   });
   socket.on("new message", function(data) {
       var messageCard = $("<div class='message-card'><a href='/members/'" + data.username + ">" +
-        "<img src='/styles/images/ghostface.jpg' alt='avatar'>" + data.username + "</a>"
-        + "<p>: " + data.message + "</p></div><br>");
+        "<img src='" + data.imagePath + "' alt='avatar'>" + data.username + "</a>"
+        + "<p>: " + data.message + "</p></div>");
       $chat.append(messageCard)
   });
 
@@ -75,23 +80,26 @@ $(document).ready(function() {
   socket.on("trackSearch", function(data) {
     var iframe = $("<iframe>");
     iframe.attr("src", "https://open.spotify.com/embed/album/" + data);
-    iframe.attr("width", "100%");
-    iframe.attr("height", "300");
     iframe.attr("frameborder", "0");
     iframe.attr("allowtransparency", "true");
     iframe.attr("allow", "encrypted-media");
     $widget.html(iframe);
-    console.log(data);
   });
   socket.on("artistSearch", function(data) {
     var iframe = $("<iframe>");
     iframe.attr("src", "https://open.spotify.com/embed/artist/" + data);
-    iframe.attr("width", "100%");
-    iframe.attr("height", "300");
     iframe.attr("frameborder", "0");
     iframe.attr("allowtransparency", "true");
     iframe.attr("allow", "encrypted-media");
     $widget.html(iframe);
-    console.log(data);
   });
+
+// Auto scrolling chat window
+    var chat = document.querySelector('#chat');
+    var observer = new MutationObserver(scrollToBottom);
+    var config = {childList: true};
+    observer.observe(chat, config);
+    function scrollToBottom() {
+        chat.scrollTop = chat.scrollHeight;
+    }
 });
