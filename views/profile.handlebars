@@ -3,13 +3,12 @@
 
         <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
 
-        <p id="bio">Bio: {{user.bio}}</p>
         {{#if owner}}
-        <form id="edit-bio-form">
-            <input id="edit-bio-textbox" type="text" placeholder="Tell us how you groove!">
-            <button id="edit-bio-submit"></button>
-        </form>
+            <button id="edit-profile"></button>
         {{/if}}
+        
+        <p id="bio">Bio: {{user.bio}}</p>
+
 
 {{#if owner}}
         <h1>File Upload</h1>
@@ -29,6 +28,9 @@
     <br>
     <img id="profile-img" alt="Profile Image" src="">
 {{/if}}
+        
+        
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
