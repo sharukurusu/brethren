@@ -14,7 +14,7 @@ var keys = require("./keys.js"),
 var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
 // For image uploads
-var multer = require("multer");
+var multer = require("multer"); 
 var path = require("path")
 
 // Setting up port and requiring models for syncing
@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //  Handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }) )
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Chat
@@ -40,7 +40,7 @@ io.sockets.on("connection", function(socket) {
   var connectedChatUsers = [];
 
   socket.on("new user", function(data) {
-    socket.username = data.username;
+    socket.username = data;
     connectedChatUsers.push(socket.username);
     io.sockets.emit("connected users", connectedChatUsers);
   });
