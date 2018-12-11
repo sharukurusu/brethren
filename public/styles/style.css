@@ -374,20 +374,20 @@ a {
     padding: 10px;
     background-color: gray;
   }
-  .record {
+  /* .record {
     background-image: url("../styles/images/1200px-12in-Vinyl-LP-Record-Angle.jpg");
     width: 100px;
     height: 100px;
     background-size: cover;
-    background-position: center; /* Center the image */
-    background-repeat: repeat;
+    background-position: center; Center the image */
+    /* background-repeat: repeat;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
     margin: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
+  } */
   .record:hover {
     width: 200px;
     height: 200px;
