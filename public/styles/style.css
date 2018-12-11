@@ -106,8 +106,60 @@ a {
 .grid-password2 {grid-area: password2;}
 .grid-submit {grid-area: submit;}
 
+#wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 4fr 4fr;
+  grid-template-areas:
+  "title title title"
+  "proPic bio widget"
+  "favs favs widget";
+  background-color: #343a40;
+}
+
+.wrapper > div:nth-child(even) {
+  background-color: rgb(151, 130, 130);
+}
+#bio{
+  width: 100%;
+  grid-area: bio;
+}
+
+#user-title{
+  grid-area: title;
+}
+
+#proPic{
+  grid-area: proPic;
+  vertical-align: middle;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+#profileWidget {
+  grid-area: widget;
+  background-color: dimgray;
+}
+
+#favs {
+  grid-area: favs;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow: scroll;
+  grid-gap: 1px;
+}
+
+#favs p {
+  display: inline-block;
+  border: rgb(43, 40, 43) solid 2px;
+}
+
 #chat-container {
     display: grid;
+    color: #fff;
     grid-template-columns: 3fr 1fr;
     grid-template-areas:
     "title title"
@@ -185,7 +237,7 @@ a {
     max-width: 60px;
     border-radius: 50%;
 }
-}
+
 
 
  /* 
