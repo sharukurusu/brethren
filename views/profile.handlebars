@@ -1,37 +1,40 @@
 {{>navbar/navbar logged-in=true profile=true}}
-{{#if owner}}<h1>You own this page!</h1>{{/if}}
+<div id="wrapper">
+  <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
+  <img src="/uploads/boomboxPurp.png" id="proPic" alt="Avatar" class="avatar">
+  {{#if owner}}
 
-        <h2 id="user-title" data-username="{{user.username}}">User Profile for: {{user.username}}</h2>
+  <p id="bio">Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum dolorem ducimus optio nam,
+    rerum vero ratione id architecto qui. {{user.bio}}</p>
+  
+  <div id="profileWidget">
+    {{!-- where the widget shows up --}}
+  </div>
+  <div id="favs" style="background-image: url(/public/styles/images/audio-cassette-cassette-tape-1626481.jpg)">
+    <p>Rap</p>
+    <p>Rock</p>
+    <p>Pop</p>
+    <p>Country</p>
+    <p>Jazz</p>
+    <p>Electronica</p>
+    <p>Latin</p>
+    <p>Reggae</p>
+    <p>Blues</p>
+  </div>
+ 
+ 
+  
+</div>
+</div>
 
-        {{#if owner}}
-            <button id="edit-profile"></button>
-        {{/if}}
-        
-        <p id="bio">Bio: {{user.bio}}</p>
-
-
-{{#if owner}}
-        <h1>File Upload</h1>
-    <p>{{msg}}</p>>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <div class="file-field input-field">
-        <div class="btn grey">
-          <span>File</span>
-          <input name="myImage" type="file">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-      </div>
-      <button type="submit" class="btn">Submit</button>
-    </form>
-    <br>
-    <img id="profile-img" alt="Profile Image" src="">
-{{/if}}
-        
-        
+  <button class="btn btn-primary" id="edit-profile">Edit</button>
+  {{/if}}
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="../js/profile.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="../js/profile.js"></script>
