@@ -1,7 +1,10 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-
+//Spotify API
+var keys = require("../keys.js"),
+  Spotify = require("node-spotify-api"),
+  spotify = new Spotify(keys.spotify);
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -71,11 +74,26 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/bio", function(req, res, next){
+  app.put("/api/edit", function(req, res, next){
       console.log(req.body)
+      var updateObject = {}
+      if (req.body.bio !== "") {
+        updateObject.bio = req.body.bio
+      }
+      if (req.body.genres !== "") {
+        updateObject.favorites = req.body.genres
+      }
+      if (req.body.album !== "") {
+        updateObject.favoriteAlbum = req.body.album
+      }
+      if (req.body.pic !== "") {
+        updateObject.imagePath = req.body.pic
+      }
+      console.log(updateObject)
+      console.log(req.user.username)
       db.User.update(
-          {bio: req.body.bio},
-          {returning: true, where: {username: req.body.username} }
+          updateObject,
+          {returning: true, where: {username: req.user.username} }
         )
         .then(function(info) {
           res.json(info)
@@ -83,4 +101,15 @@ module.exports = function(app) {
         .catch(next)
        })
 
+  app.get("/api/spotify", function(req, res){
+    spotify.search(
+      { type: "track", market: "US", query: req.body },
+      function(err, spotifyData) {
+        if (err) {
+          return console.log("Error occurred: " + err);
+        }
+        console.log(spotifyData.tracks.items[0].album.id)
+        res.json(spotifyData.tracks.items[0].album.id)
+      })
+  });
 };
