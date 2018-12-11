@@ -25,7 +25,7 @@ $(document).ready(function() {
             })
         } else {
             afterSpotify()
-        })
+        }
     })
 
     function afterSpotify(){
