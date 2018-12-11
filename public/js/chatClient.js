@@ -64,7 +64,7 @@ $(document).ready(function() {
   });
   socket.on("new message", function(data) {
       var messageCard = $("<div class='message-card'><a href='/members/'" + data.username + ">" +
-        "<img src='" + data.imagePath + "' alt='avatar'>" + data.username + "</a>"
+        "<img src='styles/images/record.png' alt='avatar'>" + data.username + "</a>"
         + "<p>: " + data.message + "</p></div>");
       $chat.append(messageCard)
   });
